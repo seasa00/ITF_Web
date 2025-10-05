@@ -1,10 +1,174 @@
-nav{
-    background-color: cornflowerblue;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* ====== โครงหลัก / พื้นฐาน ====== */
+:root{
+  --primary:#7396f2;
+  --border:#d6ecff;
+  --panel:#eaf7ff;
+  --text:#222;
+}
+html,body{margin:0;padding:0;font-family:system-ui,Segoe UI,Arial,sans-serif;color:var(--text);}
+
+/* ====== ส่วนบนเดิมของซี (คงโค้ดเดิมไว้) ====== */
+nav {
+  background: var(--primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  font-weight: 600;
+}
+nav > * { margin: 0; }
+
+.blank {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 24px auto 16px;
+  padding: 0 16px;
+  max-width: 1100px;
+}
+.nerdcat {
+  width: 120px; height: 120px;
+  object-fit: cover; border-radius: 8px;
+}
+.wordtext .ITF {
+  margin: 0 0 6px;
+  font-size: clamp(24px, 4vw, 36px);
+}
+.wordtext .sub { margin: 0; color: #333; }
+
+/* กล่องพาเนลด้านบน (เหมือนพื้นที่สมุดบันทึก) */
+/* ==== Display Panel: ขนาดพอดีๆตามภาพ ==== */
+/* ถ้าใช้ <textarea id="display" class="panel"> */
+textarea.panel{
+  display: block;
+  width: min(100%, 960px);   /* กว้างพอดีกับคอนเทนต์ ไม่ยาวเกิน */
+  height: 180px;             /* ~8 บรรทัดกับฟอนต์ 15px/1.4 */
+  margin: 12px auto 24px;
+  padding: 12px 14px;
+
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+
+  font: 15px/1.4 monospace;
+  color: var(--text);
+
+  overflow-y: auto;
+  resize: vertical;          /* ให้ยืดเฉพาะแนวตั้งได้ (ปิดได้ถ้าไม่อยากให้ยืด) */
+  box-sizing: border-box;
 }
 
-body{
-    margin: 0;
+/* ถ้าใช้ <div id="display" class="panel"> */
+div.panel{
+  display: block;
+  width: min(100%, 960px);
+  height: 180px;
+  margin: 12px auto 24px;
+  padding: 12px 14px;
+
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+
+  font: 15px/1.4 monospace;
+  color: var(--text);
+
+  overflow: auto;
+  white-space: pre-wrap;     /* ให้ตัดบรรทัดเหมือนข้อความ log */
+  box-sizing: border-box;
 }
+
+/* ทำให้ดูพอดีบนจอเล็ก */
+@media (max-width: 640px){
+  textarea.panel, div.panel{
+    width: calc(100% - 32px);
+    height: 160px;
+    margin: 10px auto 20px;
+  }
+}
+
+
+/* ====== สองคอลัมน์หลัก: ซ้าย Account / ขวา Financial ====== */
+.main-content{
+  max-width: 1100px;
+  margin: 0 auto 40px;
+  padding: 0 16px;
+  display: flex;
+  align-items: flex-start;          /* ให้หัวเสมอกัน */
+  justify-content: space-between;   /* ดันซ้าย–ขวา */
+  gap: 48px;
+  flex-wrap: wrap;                  /* จอแคบให้ลงบรรทัดถัดไป */
+}
+
+/* ความกว้างแต่ละฝั่ง */
+.left-side, .right-side{
+  flex: 1 1 460px;      /* ยืดได้ แต่ไม่เล็กกว่า ~460px */
+  max-width: 520px;     /* ไม่ให้กว้างจนล้น */
+}
+
+/* หัวข้อหลักของแต่ละฝั่ง */
+.left-side > h2,
+.right-side > h2{
+  margin: 0 0 12px;
+  font-size: 22px;
+  letter-spacing: .2px;
+}
+
+/* กล่องย่อยแต่ละเซคชัน (Account Info / Balance / Bank Operation / Converter) */
+.section{
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  background: #fff;
+}
+.section h3{
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+/* ====== ฟอร์มและอินพุต ====== */
+input, select, button{
+  font: inherit;
+  padding: 6px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+/* จัดอินพุตฝั่งขวา (Financial Tools) ให้เรียงลงมาเป็นคอลัมน์ตรงๆ */
+.right-side .section label{
+  display:block;
+  margin: 6px 0 4px;
+}
+.right-side .section input,
+.right-side .section select,
+.right-side .section button{
+  display:block;
+  width:100%;
+  margin-bottom:10px;
+}
+
+/* ปุ่ม */
+button{ cursor:pointer; background:#fff; }
+button.primary{
+  background: var(--primary);
+  color:#fff; border-color: var(--primary);
+}
+button.primary:hover{ filter: brightness(.95); }
+
+.left-side .section p{
+  margin: 6px 0;
+}
+.left-side .section input{
+  width: 220px;
+  margin: 6px 0 10px;
+}
+
+.bank-op-row{
+  display:flex;
+  gap:10px;
+  flex-wrap: wrap;
+}
+.bank-op-row > *{ flex: 0 0 auto; }

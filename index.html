@@ -1,19 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ITF Website</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    <nav>
-        <p>68070091</p>
-        <h2>ITF Website</h2>
-        <p>Week 14</p>
-    </nav>
-    Enter number: <input type = "number" id="myinput" value="0">
-    <button onclick="add()">+1</button>
-    <script src="script.js"></script>
+  <nav>
+    <p>68070091</p>
+    <h2>ITF Website</h2>
+    <p>Week 14</p>
+  </nav>
+
+  <div class="blank">
+    <img class="nerdcat" src="images/cat.jpg" alt="nerd cat" />
+    <div class="wordtext">
+      <h1 class="ITF">ITF Simple Bank</h1>
+      <h3 class="sub">Welcome to my first website HTML + CSS + JS</h3>
+    </div>
+  </div>
+
+  <!-- แถบแสดงผล/Log -->
+  <textarea id="display" class="panel" rows="8" readonly></textarea>
+
+  <!-- กล่องหลัก 2 ฝั่ง -->
+  <div class="main-content">
+    <!-- ซ้าย -->
+    <div class="left-side">
+      <h2>Account Overview</h2>
+
+      <div class="section">
+        <h3>Account Information</h3>
+        <p>Name: Bunyapol Mekcharoenviwattana</p>
+        <p>Type: Savings Account</p>
+      </div>
+
+      <div class="section">
+        <h3>Balance Information</h3>
+        <p>Current account balance:</p>
+        <input type="number" id="account-amount" value="1000" />
+        <p>Current cash balance:</p>
+        <input type="number" id="cash-amount" value="1000" />
+        <button id="btn-change">Change</button>
+      </div>
+
+      <div class="section">
+        <h3>Bank Operation</h3>
+        <div class="bank-op-row">
+          <select id="op-type">
+            <option value="deposit">Deposit</option>
+            <option value="withdraw">Withdraw</option>
+          </select>
+          <input type="number" id="op-value" placeholder="Enter amount" />
+          <button id="btn-proceed" class="primary">Proceed</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ขวา -->
+    <div class="right-side">
+      <h2>Financial Tools</h2>
+
+      <div class="section">
+        <h3>Currency Converter</h3>
+
+        <label for="conv-in">Input balance:</label>
+        <input id="conv-in" type="number" placeholder="Amount" />
+
+        <label for="conv-out">Output balance:</label>
+        <input id="conv-out" type="number" placeholder="Amount" readonly />
+
+        <label for="conv-currency">Input currency:</label>
+        <select id="conv-currency">
+          <option value="USD">USD</option>
+          <option value="THB">THB</option>
+        </select>
+
+        <button id="btn-convert">Convert</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
